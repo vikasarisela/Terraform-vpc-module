@@ -115,37 +115,7 @@ resource "aws_route_table" "database" {
   )
 }
 
-# Elastic IP
-<<<<<<< HEAD
-# resource "aws_eip" "nat" {
-#   domain   = "vpc"
-
-#   tags = merge(
-#     var.eip_tags,
-#     local.common_tags,
-#     {
-#         Name = "${local.common_suffix}-nat"
-#     }
-#   )
-# }
-
-# # NAT gateway
-# resource "aws_nat_gateway" "nat" {
-#   allocation_id = aws_eip.nat.id
-#   subnet_id     = aws_subnet.public[0].id
-
-#   tags = merge(
-#     var.nat_gateway_tags,
-#     local.common_tags,
-#     {
-#         Name = "${local.common_suffix}"
-#     }
-#   )
-#   # To ensure proper ordering, it is recommended to add an explicit dependency
-#   # on the Internet Gateway for the VPC.
-#   depends_on = [aws_internet_gateway.igw]
-# }
-=======
+#Elastic IP
 resource "aws_eip" "nat" {
   domain   = "vpc"
 
@@ -174,7 +144,6 @@ resource "aws_nat_gateway" "nat" {
   # on the Internet Gateway for the VPC.
   depends_on = [aws_internet_gateway.igw]
 }
->>>>>>> b4203bc (terraform basics)
 
 #Route
 resource "aws_route" "public" {
