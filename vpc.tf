@@ -152,6 +152,19 @@ resource "aws_route" "public" {
   gateway_id = aws_internet_gateway.igw.id
 }
 
+# Private egress route through NAT
+resource "aws_route" "private" {
+  route_table_id            = aws_route_table.private.id
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.nat.id
+}
+
+# Database egress route through NAT
+resource "aws_route" "database" {
+  route_table_id            = aws_route_table.database.id
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.nat.id
+}
 #Route Table Associations
 
 resource "aws_route_table_association" "public" {
