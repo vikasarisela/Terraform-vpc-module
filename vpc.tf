@@ -146,6 +146,7 @@ resource "aws_nat_gateway" "nat" {
 }
 
 #Route
+#This route defines outbound traffic from the subnet to the Internet Gateway;
 resource "aws_route" "public" {
   route_table_id            = aws_route_table.public.id
   destination_cidr_block    = "0.0.0.0/0"
